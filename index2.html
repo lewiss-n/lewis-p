@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lewis Ndiritu — Art Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #080810;
+    --surface:   rgba(255,255,255,0.045);
+    --surface2:  rgba(255,255,255,0.08);
+    --border:    rgba(255,255,255,0.10);
+    --border2:   rgba(255,255,255,0.18);
+    --red:       #E8002B;
+    --red-glow:  rgba(232,0,43,0.35);
+    --red-soft:  rgba(232,0,43,0.12);
+    --amber:     #F5A623;
+    --amber-soft:rgba(245,166,35,0.12);
+    --white:     #FFFFFF;
+    --off:       rgba(255,255,255,0.55);
+    --muted:     rgba(255,255,255,0.30);
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --font-mono:    'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  .orb { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; animation: drift 18s ease-in-out infinite alternate; }
+  .orb-1 { width: 600px; height: 600px; background: rgba(232,0,43,0.18); top: -200px; left: -150px; animation-duration: 20s; }
+  .orb-2 { width: 400px; height: 400px; background: rgba(245,166,35,0.10); top: 40%; right: -100px; animation-duration: 25s; animation-delay: -8s; }
+  .orb-3 { width: 500px; height: 500px; background: rgba(80,40,200,0.10); bottom: -100px; left: 30%; animation-duration: 22s; animation-delay: -4s; }
+  @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,30px) scale(1.08); } }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(8,8,16,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-portfolio {
+    background: transparent; color: var(--red); border: 1px solid rgba(232,0,43,0.45);
+    padding: 10px 22px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, color 0.2s, transform 0.2s;
+    text-decoration: none; display: flex; align-items: center; gap: 7px;
+  }
+  .nav-portfolio:hover { background: var(--red); color: #fff; transform: scale(1.03); }
+  .nav-portfolio svg { width: 12px; height: 12px; }
+
+  main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 120px 32px 80px; }
+
+  /* HERO */
+  .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 60px 0 80px; position: relative; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 28px; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--red); }
+  .hero-name { font-family: var(--font-display); font-size: clamp(64px, 10vw, 140px); font-weight: 800; line-height: 0.92; letter-spacing: -3px; background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.65) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-name em { font-style: normal; background: none; -webkit-text-fill-color: var(--red); }
+  .hero-title { font-family: var(--font-display); font-size: clamp(18px, 3vw, 32px); font-weight: 400; color: var(--off); letter-spacing: 0.02em; margin-top: 20px; animation: fadeUp 1s 0.15s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-desc { max-width: 560px; font-size: 16px; line-height: 1.7; color: var(--muted); margin-top: 28px; animation: fadeUp 1s 0.25s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-actions { display: flex; gap: 16px; margin-top: 44px; animation: fadeUp 1s 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+  .btn-primary { background: var(--red); color: #fff; border: none; padding: 16px 36px; border-radius: 100px; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 32px var(--red-glow); display: inline-block; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px var(--red-glow); }
+  .btn-ghost { background: var(--surface2); color: var(--off); border: 1px solid var(--border2); padding: 16px 36px; border-radius: 100px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; backdrop-filter: blur(12px); transition: background 0.2s, color 0.2s; display: inline-block; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); color: #fff; }
+  .hero-scroll-hint { position: absolute; bottom: 40px; left: 0; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; animation: fadeUp 1s 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-scroll-hint::after { content: ''; width: 1px; height: 48px; background: linear-gradient(to bottom, var(--muted), transparent); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SECTION LABEL */
+  .section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.20em; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* GLASS */
+  .glass { background: var(--surface); backdrop-filter: blur(24px) saturate(200%); -webkit-backdrop-filter: blur(24px) saturate(200%); border: 1px solid var(--border); border-radius: 24px; transition: border-color 0.3s, background 0.3s, transform 0.3s; }
+  .glass:hover { border-color: var(--border2); background: var(--surface2); }
+
+  /* BENTO */
+  .bento { display: grid; gap: 16px; }
+
+  /* STATS */
+  .stats-bento { grid-template-columns: repeat(4, 1fr); margin-bottom: 16px; }
+  .stat-card { padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; min-height: 160px; }
+  .stat-card .stat-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .stat-card .stat-val { font-family: var(--font-display); font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -2px; background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-card .stat-val.red { background: linear-gradient(135deg, var(--red), #ff6b6b); -webkit-background-clip: text; background-clip: text; }
+  .stat-card .stat-sub { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .stat-card.accent { background: linear-gradient(135deg, rgba(232,0,43,0.18), rgba(232,0,43,0.06)); border-color: rgba(232,0,43,0.25); }
+
+  /* WORK CARDS — clickable */
+  .work-bento { grid-template-columns: 7fr 5fr; grid-template-rows: auto auto; margin-bottom: 16px; }
+
+  .work-card-btn {
+    background: none; border: none; padding: 0; cursor: pointer;
+    text-align: left; display: block; width: 100%;
+    border-radius: 24px;
+  }
+  .work-card-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+
+  .work-main {
+    grid-row: 1 / 3;
+    overflow: hidden; min-height: 520px; position: relative;
+    border-radius: 24px;
+  }
+  .work-main-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .work-card-btn:hover .work-main-img { transform: scale(1.04); }
+  .work-main-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,16,0.95) 0%, rgba(8,8,16,0.3) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; }
+  .work-open-hint { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 14px; font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.08em; color: var(--off); display: flex; align-items: center; gap: 6px; opacity: 0; transition: opacity 0.25s; }
+  .work-card-btn:hover .work-open-hint { opacity: 1; }
+
+  .work-tag { display: inline-block; background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 16px; width: fit-content; }
+  .work-main-title { font-family: var(--font-display); font-size: 34px; font-weight: 800; line-height: 1.1; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .work-main-desc { font-size: 14px; color: var(--off); line-height: 1.6; max-width: 420px; }
+  .work-metrics { display: flex; gap: 24px; margin-top: 20px; }
+  .work-metric { display: flex; flex-direction: column; gap: 2px; }
+  .work-metric-val { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); }
+  .work-metric-key { font-size: 11px; color: var(--muted); }
+
+  /* Side work cards */
+  .work-side-wrap {
+    overflow: hidden; border-radius: 24px; position: relative;
+    min-height: 250px;
+  }
+  .work-side-img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .work-card-btn:hover .work-side-img { transform: scale(1.05); }
+  .work-side-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,16,0.96) 0%, rgba(8,8,16,0.55) 60%, rgba(8,8,16,0.2) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 28px 28px; }
+  .work-side-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+  .work-side-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .work-side-stat { font-family: var(--font-display); font-size: 30px; font-weight: 800; background: linear-gradient(135deg, var(--amber), #ffd280); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-top: 10px; }
+
+  /* CAMPAIGN BENTO */
+  .campaign-bento { grid-template-columns: 1fr 1fr 1fr; margin-bottom: 16px; }
+  .campaign-card { padding: 36px 32px; }
+  .campaign-card.wide { grid-column: 1 / 3; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; background: linear-gradient(135deg, rgba(232,0,43,0.12), rgba(232,0,43,0.04)); border-color: rgba(232,0,43,0.20); }
+  .campaign-number { font-family: var(--font-display); font-size: 80px; font-weight: 800; line-height: 0.9; letter-spacing: -3px; background: linear-gradient(135deg, var(--red), #ff8a8a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .campaign-number-label { font-size: 15px; color: var(--off); margin-top: 12px; line-height: 1.5; }
+  .campaign-desc-title { font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
+  .campaign-desc-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .campaign-quote { padding: 36px 32px; background: linear-gradient(135deg, rgba(245,166,35,0.12), rgba(245,166,35,0.04)); border-color: rgba(245,166,35,0.22); display: flex; flex-direction: column; justify-content: center; }
+  .campaign-quote-mark { font-size: 60px; color: var(--amber); line-height: 0.7; margin-bottom: 16px; font-family: serif; }
+  .campaign-quote-text { font-size: 15px; color: var(--off); line-height: 1.7; font-style: italic; }
+  .campaign-quote-attr { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-top: 16px; text-transform: uppercase; }
+
+  /* MARQUEE */
+  .marquee-section { margin: 60px 0; overflow: hidden; }
+  .marquee-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; text-align: center; margin-bottom: 28px; }
+  .marquee-track { display: flex; gap: 0; animation: marquee 24s linear infinite; }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item { flex-shrink: 0; padding: 16px 40px; font-family: var(--font-display); font-size: 22px; font-weight: 700; color: rgba(255,255,255,0.18); letter-spacing: 0.02em; white-space: nowrap; transition: color 0.3s; }
+  .marquee-item:hover { color: rgba(255,255,255,0.7); }
+  .marquee-item span { color: var(--red); margin: 0 8px; font-weight: 400; }
+
+  /* CAPABILITIES */
+  .cap-bento { grid-template-columns: repeat(4, 1fr); margin-bottom: 16px; }
+  .cap-card { padding: 32px 28px; min-height: 200px; display: flex; flex-direction: column; }
+  .cap-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--red-soft); border: 1px solid rgba(232,0,43,0.20); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
+  .cap-icon.amber { background: var(--amber-soft); border-color: rgba(245,166,35,0.20); }
+  .cap-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .cap-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+
+  /* ABOUT + SKILLS */
+  .about-bento { grid-template-columns: 5fr 7fr; margin-bottom: 16px; }
+  .about-card { padding: 44px 40px; }
+  .about-title { font-family: var(--font-display); font-size: 42px; font-weight: 800; line-height: 1.05; letter-spacing: -1px; margin-bottom: 24px; }
+  .about-title span { color: var(--red); }
+  .about-body { font-size: 15px; line-height: 1.75; color: var(--off); }
+  .skills-card { padding: 44px 40px; }
+  .skills-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--muted); margin-bottom: 28px; letter-spacing: 0.04em; }
+  .skill-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border); cursor: default; }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-name { font-size: 14px; font-weight: 500; }
+  .skill-bar-wrap { flex: 1; margin: 0 20px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .skill-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--red), #ff6b6b); transform-origin: left; animation: growBar 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+  @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .skill-pct { font-family: var(--font-mono); font-size: 11px; color: var(--muted); min-width: 32px; text-align: right; }
+
+  /* EXPERIENCE */
+  .exp-bento { grid-template-columns: repeat(3, 1fr); margin-bottom: 16px; }
+  .exp-card { padding: 36px 32px; position: relative; overflow: hidden; }
+  .exp-card::before { content: attr(data-num); position: absolute; top: -10px; right: 16px; font-family: var(--font-display); font-size: 100px; font-weight: 800; color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none; }
+  .exp-period { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
+  .exp-company { font-family: var(--font-display); font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
+  .exp-role { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+  .exp-desc { font-size: 13px; color: var(--off); line-height: 1.65; }
+  .exp-clients { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .exp-client-tag { background: var(--surface2); border: 1px solid var(--border); padding: 4px 10px; border-radius: 100px; font-size: 10px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+  /* CONTACT */
+  .contact-section { margin-top: 80px; padding: 80px 60px; text-align: center; background: linear-gradient(135deg, rgba(232,0,43,0.10), rgba(232,0,43,0.03)); border: 1px solid rgba(232,0,43,0.18); border-radius: 32px; position: relative; overflow: hidden; }
+  .contact-section::before { content: ''; position: absolute; inset: 0; border-radius: 32px; background: radial-gradient(ellipse at 50% 0%, rgba(232,0,43,0.18), transparent 70%); pointer-events: none; }
+  .contact-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1; letter-spacing: -2px; margin-bottom: 20px; }
+  .contact-title span { color: var(--red); }
+  .contact-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .contact-email { font-family: var(--font-mono); font-size: 18px; color: var(--off); text-decoration: none; display: block; margin-bottom: 12px; transition: color 0.2s; }
+  .contact-email:hover { color: #fff; }
+  .contact-phone { font-family: var(--font-mono); font-size: 15px; color: var(--muted); text-decoration: none; display: block; transition: color 0.2s; }
+  .contact-phone:hover { color: var(--off); }
+
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+  .footer-built { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* CURSOR */
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
+  .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(232,0,43,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s; }
+
+  /* ═══════════════════════════
+     MODAL OVERLAY
+  ═══════════════════════════ */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(8,8,16,0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: rgba(14,14,24,0.95);
+    border: 1px solid var(--border2);
+    border-radius: 28px;
+    width: 100%; max-width: 860px;
+    max-height: 90vh; overflow-y: auto;
+    transform: translateY(40px) scale(0.97);
+    transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232,0,43,0.4) transparent;
+  }
+  .modal::-webkit-scrollbar { width: 4px; }
+  .modal::-webkit-scrollbar-thumb { background: rgba(232,0,43,0.4); border-radius: 2px; }
+  .modal-backdrop.open .modal { transform: translateY(0) scale(1); }
+
+  .modal-hero { width: 100%; height: 360px; object-fit: cover; object-position: center; border-radius: 24px 24px 0 0; display: block; }
+  .modal-hero-placeholder { width: 100%; height: 360px; border-radius: 24px 24px 0 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 48px; font-weight: 800; color: rgba(255,255,255,0.1); }
+
+  .modal-close {
+    position: absolute; top: 18px; right: 18px;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--off); font-size: 18px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, color 0.2s; z-index: 10;
+  }
+  .modal-close:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+  .modal-body { padding: 40px 44px 48px; }
+  .modal-tag { display: inline-block; background: var(--red); color: #fff; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 18px; }
+  .modal-title { font-family: var(--font-display); font-size: 36px; font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+  .modal-desc { font-size: 15px; color: var(--off); line-height: 1.75; margin-bottom: 32px; }
+
+  .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+  .modal-stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; }
+  .modal-stat-val { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--red); line-height: 1; }
+  .modal-stat-key { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  .modal-section-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .modal-pill { background: var(--surface2); border: 1px solid var(--border); padding: 6px 14px; border-radius: 100px; font-size: 12px; color: var(--off); font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .modal-pill.highlight { border-color: rgba(232,0,43,0.35); color: var(--red); background: var(--red-soft); }
+
+  .modal-divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  .modal-behance {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; border: 1px solid rgba(232,0,43,0.45);
+    color: var(--red); padding: 12px 24px; border-radius: 100px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+    margin-top: 8px;
+  }
+  .modal-behance:hover { background: var(--red); color: #fff; }
+
+  /* SVG placeholder gradients for banner images */
+  .svg-banner-kfc { background: linear-gradient(135deg, #E8002B 0%, #8B0000 50%, #080810 100%); }
+  .svg-banner-brand { background: linear-gradient(135deg, #1a0a2e 0%, #E8002B 60%, #ff6b35 100%); }
+  .svg-banner-btw { background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #F5A623 100%); }
+  .svg-banner-smirnoff { background: linear-gradient(135deg, #0a0a2e 0%, #1a1a6e 60%, #4040cc 100%); }
+  .svg-banner-tropikal { background: linear-gradient(135deg, #0a1a0a 0%, #2d5a1b 50%, #7aba3a 100%); }
+
+  .banner-text-overlay {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+  }
+  .banner-brand-name {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: 52px; color: rgba(255,255,255,0.12);
+    letter-spacing: -1px; text-transform: uppercase;
+  }
+  .banner-project-name {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 22px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .stats-bento { grid-template-columns: repeat(2,1fr); }
+    .work-bento { grid-template-columns: 1fr; }
+    .work-main { grid-row: auto; min-height: 380px; }
+    .about-bento { grid-template-columns: 1fr; }
+    .exp-bento { grid-template-columns: repeat(2,1fr); }
+    .cap-bento { grid-template-columns: repeat(2,1fr); }
+    .campaign-bento { grid-template-columns: 1fr; }
+    .campaign-card.wide { grid-column: 1; grid-template-columns: 1fr; }
+    .modal-stats { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    main { padding: 100px 16px 60px; }
+    .stats-bento, .exp-bento, .cap-bento { grid-template-columns: 1fr; }
+    .contact-section { padding: 48px 28px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .cursor, .cursor-ring { display: none; }
+    .modal-body { padding: 28px 24px 36px; }
+    .modal-hero { height: 220px; }
+    .modal-hero-placeholder { height: 220px; }
+    .modal-stats { grid-template-columns: 1fr 1fr; }
+    .modal-title { font-size: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, .orb { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">L<span>.</span>N</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="nav-portfolio">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 1.2.836 1.884 2.109 1.884.617 0 1.155-.261 1.479-.709l2.168.854zm-6.337-6.967c-.97 0-1.592.516-1.764 1.578h3.361c-.064-1.084-.65-1.578-1.597-1.578zM5.435 7.028H1.15L1.1 17h4.181c1.695 0 4.169-.39 4.169-3.428 0-1.698-.979-2.637-2.167-2.986.955-.408 1.704-1.22 1.704-2.53C8.987 5.59 7.048 7.028 5.435 7.028zM3.5 9.5h1.517c.807 0 1.408.39 1.408 1.141 0 .813-.601 1.221-1.408 1.221H3.5V9.5zm0 4.5h1.666c.931 0 1.627.344 1.627 1.308 0 .96-.696 1.302-1.627 1.302H3.5V14z"/></svg>
+    Portfolio
+  </a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Art Director — Nairobi, Kenya</div>
+    <h1 class="hero-name">Lewis<br/><em>Ndiritu</em></h1>
+    <p class="hero-title">Brands that speak Kenyan.</p>
+    <p class="hero-desc">Art Director at Kapu Digital, leading KFC Kenya's creative identity. I build brand voices that feel human, local, and impossible to ignore — blending global standards with hyper-local culture.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">See My Work</a>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="btn-ghost">View on Behance ↗</a>
+    </div>
+    <div class="hero-scroll-hint">Scroll to explore</div>
+  </section>
+
+  <!-- STATS -->
+  <div class="section-label reveal">Key Numbers</div>
+  <div class="bento stats-bento reveal">
+    <div class="glass stat-card accent">
+      <div class="stat-label">Engagement Growth</div>
+      <div class="stat-val red" id="cnt-5000">5000<span style="font-size:28px">%</span></div>
+      <div class="stat-sub">KFC Kenya Makosa Imefanyika — single-post spike</div>
+    </div>
+    <div class="glass stat-card reveal-delay-1">
+      <div class="stat-label">Flagship Clients</div>
+      <div class="stat-val" id="cnt-8">8<span style="font-size:28px">+</span></div>
+      <div class="stat-sub">KFC, Smirnoff, Gordon's, Shell, Singleton, Downy, Kibao, Tropikal</div>
+    </div>
+    <div class="glass stat-card reveal-delay-2">
+      <div class="stat-label">Comments from 14</div>
+      <div class="stat-val" id="cnt-481">481</div>
+      <div class="stat-sub">Makosa Imefanyika post — organic, zero paid boost</div>
+    </div>
+    <div class="glass stat-card reveal-delay-3">
+      <div class="stat-label">Likes from 282</div>
+      <div class="stat-val" id="cnt-13k">13.8K</div>
+      <div class="stat-sub">KFC Kenya's most-engaged post — ever</div>
+    </div>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <section id="work">
+    <div class="section-label reveal" style="margin-top:80px;">Featured Work</div>
+    <div class="bento work-bento reveal">
+
+      <!-- MAIN: Makosa Imefanyika -->
+      <button class="work-card-btn" onclick="openModal('makosa')" aria-label="Open Makosa Imefanyika case study">
+        <div class="glass work-main">
+          <div class="modal-hero-placeholder svg-banner-kfc" style="height:100%;min-height:520px;border-radius:24px;position:relative;overflow:hidden;">
+            <div class="banner-text-overlay">
+              <div class="banner-brand-name">KFC Kenya</div>
+              <div class="banner-project-name">Makosa Imefanyika</div>
+            </div>
+          </div>
+          <div class="work-main-overlay" style="border-radius:24px;">
+            <div class="work-open-hint">↗ View case study</div>
+            <div class="work-tag">KFC Kenya · 2024–Present</div>
+            <div class="work-main-title">Makosa Imefanyika<br/>Campaign</div>
+            <div class="work-main-desc">A reactive, culturally rooted campaign that turned a design error into KFC Kenya's most-celebrated social moment.</div>
+            <div class="work-metrics">
+              <div class="work-metric"><div class="work-metric-val">13.8K</div><div class="work-metric-key">Likes (from 282)</div></div>
+              <div class="work-metric"><div class="work-metric-val">481</div><div class="work-metric-key">Comments (from 14)</div></div>
+              <div class="work-metric"><div class="work-metric-val">5000%</div><div class="work-metric-key">Engagement spike</div></div>
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <!-- SIDE TOP: Brand Voice -->
+      <button class="work-card-btn" onclick="openModal('brandvoice')" aria-label="Open Brand Voice case study">
+        <div class="glass work-side-wrap" style="min-height:250px;">
+          <div class="work-side-img svg-banner-brand" style="width:100%;height:100%;position:absolute;inset:0;"></div>
+          <div class="banner-text-overlay" style="position:absolute;inset:0;">
+            <div class="banner-brand-name" style="font-size:36px;">KFC Brand</div>
+            <div class="banner-project-name">Voice Identity</div>
+          </div>
+          <div class="work-side-overlay" style="border-radius:24px;">
+            <div class="work-open-hint" style="top:14px;right:14px;opacity:0;position:absolute;">↗</div>
+            <div class="work-tag" style="background:transparent;border:1px solid rgba(232,0,43,0.5);color:var(--red);">Brand Voice</div>
+            <div class="work-side-title">Fluent Sheng &amp; Swahili Brand Identity</div>
+            <div class="work-side-desc">Built KFC Kenya's signature tone — hyper-local Nairobi banter that feels authentic, not corporate.</div>
+          </div>
+        </div>
+      </button>
+
+      <!-- SIDE BOTTOM: Blankets & Wine -->
+      <button class="work-card-btn" onclick="openModal('btw')" aria-label="Open Blankets and Wine case study">
+        <div class="glass work-side-wrap" style="min-height:250px;background:linear-gradient(135deg,rgba(245,166,35,0.10),rgba(245,166,35,0.04));border-color:rgba(245,166,35,0.18);">
+          <div class="work-side-img svg-banner-btw" style="width:100%;height:100%;position:absolute;inset:0;opacity:0.7;"></div>
+          <div class="banner-text-overlay" style="position:absolute;inset:0;">
+            <div class="banner-brand-name" style="font-size:30px;">Blankets</div>
+            <div class="banner-project-name">&amp; Wine Activation</div>
+          </div>
+          <div class="work-side-overlay" style="border-radius:24px;">
+            <div class="work-open-hint" style="top:14px;right:14px;opacity:0;position:absolute;">↗</div>
+            <div class="work-tag" style="background:transparent;border:1px solid rgba(245,166,35,0.5);color:var(--amber);">Event Creative</div>
+            <div class="work-side-title">Blankets &amp; Wine Activation</div>
+            <div class="work-side-desc">Event creative and social strategy that earned organic nationwide commentary from marketing professionals.</div>
+            <div class="work-side-stat">Organic reach</div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- EXTRA WORK CARDS -->
+    <div class="bento cap-bento reveal">
+
+      <button class="work-card-btn" onclick="openModal('smirnoff')" style="border-radius:24px;">
+        <div class="glass cap-card" style="position:relative;overflow:hidden;min-height:240px;padding:0;">
+          <div class="svg-banner-smirnoff" style="position:absolute;inset:0;border-radius:24px;opacity:0.6;"></div>
+          <div class="banner-text-overlay" style="position:absolute;inset:0;">
+            <div class="banner-brand-name" style="font-size:30px;">Smirnoff</div>
+            <div class="banner-project-name">Fiesta Events</div>
+          </div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,0.92) 0%,transparent 60%);border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
+            <div class="work-open-hint" style="top:14px;right:14px;opacity:0;position:absolute;">↗</div>
+            <div class="cap-title">Smirnoff Fiesta</div>
+            <div class="cap-desc">Nationwide activation event creative — from concept to execution.</div>
+          </div>
+        </div>
+      </button>
+
+      <button class="work-card-btn" onclick="openModal('tropikal')" style="border-radius:24px;">
+        <div class="glass cap-card" style="position:relative;overflow:hidden;min-height:240px;padding:0;">
+          <div class="svg-banner-tropikal" style="position:absolute;inset:0;border-radius:24px;opacity:0.6;"></div>
+          <div class="banner-text-overlay" style="position:absolute;inset:0;">
+            <div class="banner-brand-name" style="font-size:28px;">Tropikal</div>
+            <div class="banner-project-name">Product Launch</div>
+          </div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,0.92) 0%,transparent 60%);border-radius:24px;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
+            <div class="work-open-hint" style="top:14px;right:14px;opacity:0;position:absolute;">↗</div>
+            <div class="cap-title">Tropikal Brands</div>
+            <div class="cap-desc">Creative launch strategy for a new lotion and deodorant line celebrating Kenyan identity.</div>
+          </div>
+        </div>
+      </button>
+
+      <div class="glass cap-card" style="min-height:240px;">
+        <div class="cap-icon">⛽</div>
+        <div class="cap-title">Shell Consumer Events</div>
+        <div class="cap-desc">Fresh, engaging consumer-facing event designs to promote Shell's products and services across Kenya's retail and BTL landscape.</div>
+      </div>
+
+      <div class="glass cap-card" style="min-height:240px;">
+        <div class="cap-icon amber">🌾</div>
+        <div class="cap-title">Kibao Brand Identity</div>
+        <div class="cap-desc">Brand experience with messaging that spoke directly to Kenyan aspirations and values — grounded, confident, and culturally honest.</div>
+      </div>
+    </div>
+
+    <!-- CAMPAIGN NUMBERS -->
+    <div class="bento campaign-bento reveal">
+      <div class="glass campaign-card wide">
+        <div>
+          <div class="campaign-number">5,000<span style="font-size:36px;letter-spacing:0">%</span></div>
+          <div class="campaign-number-label">Single-post engagement increase.<br/>From 282 likes to 13,800 — organic.</div>
+        </div>
+        <div>
+          <div class="campaign-desc-title">The moment KFC Kenya stopped selling chicken and started talking like a Kenyan.</div>
+          <div class="campaign-desc-body">The Makosa Imefanyika campaign wasn't a planned big-budget production. It was a well-timed, culturally fluent response that turned an internal error into the brand's most-shared moment. Proof that authenticity, timing, and local fluency beat polished perfection every time.</div>
+        </div>
+      </div>
+      <div class="glass campaign-quote">
+        <div class="campaign-quote-mark">"</div>
+        <div class="campaign-quote-text">KFC Kenya made it witty, local, and so Kenyan. Proof that authenticity beats perfection every time.</div>
+        <div class="campaign-quote-attr">— Wendy Fiona, Digital Marketer / LinkedIn</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section reveal">
+    <div class="marquee-label">Brands I've worked with</div>
+    <div class="marquee-track">
+      <span class="marquee-item">KFC Kenya<span>·</span></span>
+      <span class="marquee-item">Smirnoff<span>·</span></span>
+      <span class="marquee-item">Gordon's<span>·</span></span>
+      <span class="marquee-item">Shell<span>·</span></span>
+      <span class="marquee-item">Singleton<span>·</span></span>
+      <span class="marquee-item">Downy<span>·</span></span>
+      <span class="marquee-item">Kibao<span>·</span></span>
+      <span class="marquee-item">Tropikal<span>·</span></span>
+      <span class="marquee-item">Tawi Paints<span>·</span></span>
+      <span class="marquee-item">University of Nairobi<span>·</span></span>
+      <span class="marquee-item">KFC Kenya<span>·</span></span>
+      <span class="marquee-item">Smirnoff<span>·</span></span>
+      <span class="marquee-item">Gordon's<span>·</span></span>
+      <span class="marquee-item">Shell<span>·</span></span>
+      <span class="marquee-item">Singleton<span>·</span></span>
+      <span class="marquee-item">Downy<span>·</span></span>
+      <span class="marquee-item">Kibao<span>·</span></span>
+      <span class="marquee-item">Tropikal<span>·</span></span>
+      <span class="marquee-item">Tawi Paints<span>·</span></span>
+      <span class="marquee-item">University of Nairobi<span>·</span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal" style="margin-top:80px;">About</div>
+    <div class="bento about-bento reveal">
+      <div class="glass about-card">
+        <h2 class="about-title">Design is a<br/><span>cultural act.</span></h2>
+        <p class="about-body">I'm Lewis Ndiritu — Art Director at Kapu Digital Agency, leading the creative vision for KFC Kenya. My work sits at the intersection of global brand thinking and hyper-local Kenyan storytelling.</p>
+        <p class="about-body" style="margin-top:16px;">I don't just make things look good. I make brands feel real to the people they're talking to — because in Kenya, culture is the brief.</p>
+        <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
+          <a href="mailto:lewisndirituu@icloud.com" class="btn-primary" style="padding:12px 24px;font-size:13px;">lewisndirituu@icloud.com</a>
+          <a href="tel:+254746012350" class="btn-ghost" style="padding:12px 24px;font-size:13px;">+254 746 012 350</a>
+        </div>
+      </div>
+      <div class="glass skills-card">
+        <div class="skills-title">Craft &amp; Capabilities</div>
+        <div class="skill-row">
+          <span class="skill-name">Art Direction</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div>
+          <span class="skill-pct">97%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Brand Identity</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Campaign Creative</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:93%"></div></div>
+          <span class="skill-pct">93%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Motion Design</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Packaging Design</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:86%"></div></div>
+          <span class="skill-pct">86%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Visual Storytelling</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+          <span class="skill-pct">92%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">BTL &amp; Experiential</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:89%"></div></div>
+          <span class="skill-pct">89%</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Adobe Creative Suite</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:96%"></div></div>
+          <span class="skill-pct">96%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label reveal" style="margin-top:80px;">Experience</div>
+    <div class="bento exp-bento reveal">
+      <div class="glass exp-card" data-num="01">
+        <div class="exp-period">Present</div>
+        <div class="exp-company">Kapu Digital</div>
+        <div class="exp-role">Art Director</div>
+        <div class="exp-desc">Lead art direction for KFC Kenya — overseeing creative vision, digital and BTL campaigns, and a full brand transformation that turned the account into Kenya's most talked-about brand voice.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">KFC Kenya</span>
+          <span class="exp-client-tag">Digital</span>
+          <span class="exp-client-tag">BTL</span>
+        </div>
+      </div>
+      <div class="glass exp-card" data-num="02">
+        <div class="exp-period">2025</div>
+        <div class="exp-company">Exact Experiential</div>
+        <div class="exp-role">Art Direction · BTL</div>
+        <div class="exp-desc">Creative direction and asset production for major FMCG and energy brand activations — from concept ideation through supplier-coordinated execution.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">Gordon's</span>
+          <span class="exp-client-tag">Smirnoff</span>
+          <span class="exp-client-tag">Shell</span>
+          <span class="exp-client-tag">Downy</span>
+        </div>
+      </div>
+      <div class="glass exp-card" data-num="03">
+        <div class="exp-period">2024</div>
+        <div class="exp-company">Independent</div>
+        <div class="exp-role">Creative Consultant</div>
+        <div class="exp-desc">Led product launch creative for Tropikal Brands and Kibao — culturally resonant brand experiences anchored in Kenyan identity, from strategy through final artwork.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">Tropikal Brands</span>
+          <span class="exp-client-tag">Kibao</span>
+        </div>
+      </div>
+      <div class="glass exp-card" data-num="04">
+        <div class="exp-period">2022</div>
+        <div class="exp-company">Tag Creative Agency</div>
+        <div class="exp-role">Art Direction · Print</div>
+        <div class="exp-desc">Directed visual output across billboards, publications, and print for a wide client base — strict brand fidelity, coordinated to production and print quality.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">Tawi Paints</span>
+          <span class="exp-client-tag">UoN</span>
+          <span class="exp-client-tag">Air Cargo Global</span>
+        </div>
+      </div>
+      <div class="glass exp-card" data-num="05">
+        <div class="exp-period">2021</div>
+        <div class="exp-company">Garage Pro Kenya</div>
+        <div class="exp-role">Art Direction · Social</div>
+        <div class="exp-desc">Directed social media visual identity and marketing photography campaigns — building a consistent brand presence that drove audience growth and sales.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">Social Media</span>
+          <span class="exp-client-tag">Photography</span>
+          <span class="exp-client-tag">Print</span>
+        </div>
+      </div>
+      <div class="glass exp-card" data-num="✦" style="background:linear-gradient(135deg,rgba(232,0,43,0.08),rgba(232,0,43,0.02));border-color:rgba(232,0,43,0.15);">
+        <div class="exp-period">Education</div>
+        <div class="exp-company">Art &amp; Design</div>
+        <div class="exp-role">Graphic Design · Branding · UI/UX</div>
+        <div class="exp-desc">Formal training in Branding, Corporate Identity, Packaging Design, Publication Design, Illustration, Graphic Reproduction, and UI/UX Design.</div>
+        <div class="exp-clients">
+          <span class="exp-client-tag">Adobe Certified</span>
+          <span class="exp-client-tag">Branding</span>
+          <span class="exp-client-tag">Packaging</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="margin-top:80px;">
+    <div class="section-label reveal">Contact</div>
+    <div class="contact-section reveal">
+      <h2 class="contact-title">Let's build something<br/><span>unforgettable.</span></h2>
+      <p class="contact-sub">Whether it's a brand that needs a Kenyan heartbeat or a campaign that should break the internet — I'm in.</p>
+      <a href="mailto:lewisndirituu@icloud.com" class="contact-email">lewisndirituu@icloud.com</a>
+      <a href="tel:+254746012350" class="contact-phone">+254 746 012 350 · Nairobi, Kenya</a>
+      <div style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="mailto:lewisndirituu@icloud.com" class="btn-primary">Send a message</a>
+        <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="btn-ghost">Behance Portfolio ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-copy">© 2026 Lewis Ndiritu. Art Director.</div>
+  <div class="footer-built">Nairobi, Kenya</div>
+</footer>
+
+<!-- ═══════════════════════════════════
+     MODALS
+═══════════════════════════════════ -->
+
+<!-- Modal: Makosa Imefanyika -->
+<div class="modal-backdrop" id="modal-makosa" role="dialog" aria-modal="true" aria-labelledby="modal-makosa-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('makosa')" aria-label="Close">✕</button>
+    <div class="modal-hero-placeholder svg-banner-kfc">
+      <div class="banner-text-overlay">
+        <div class="banner-brand-name">KFC Kenya</div>
+        <div class="banner-project-name">Makosa Imefanyika · 2024</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">KFC Kenya · Social Media · 2024–Present</div>
+      <h2 class="modal-title" id="modal-makosa-title">Makosa Imefanyika Campaign</h2>
+      <p class="modal-desc">A reactive, culturally rooted campaign that turned an internal design error into KFC Kenya's most-celebrated social media moment. By leaning into Nairobi office culture, Sheng, and self-aware humour, the brand transformed a mistake into a movement — and in doing so, defined a new creative direction for the entire account.</p>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val">5,000%</div><div class="modal-stat-key">Engagement increase</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">13.8K</div><div class="modal-stat-key">Likes (from 282)</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">481</div><div class="modal-stat-key">Comments (from 14)</div></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title">What made it work</div>
+      <p class="modal-desc" style="margin-bottom:24px;">The campaign succeeded because it was honest. Rather than burying the mistake, Lewis directed a response that acknowledged it in the brand's own voice — playful, Kenyan, and utterly relatable. The post spread organically through LinkedIn and Twitter, drawing commentary from marketing professionals across East Africa who cited it as a masterclass in authentic brand behaviour.</p>
+      <div class="modal-section-title" style="margin-bottom:14px;">Deliverables</div>
+      <div class="modal-tags" style="margin-bottom:28px;">
+        <span class="modal-pill highlight">Reactive Social Content</span>
+        <span class="modal-pill highlight">Art Direction</span>
+        <span class="modal-pill">Copywriting Direction</span>
+        <span class="modal-pill">Brand Voice</span>
+        <span class="modal-pill">Cultural Strategy</span>
+      </div>
+      <div class="modal-section-title" style="margin-bottom:14px;">Industry recognition</div>
+      <p class="modal-desc" style="font-style:italic;font-size:14px;">"KFC Kenya made it witty, local, and so Kenyan. Proof that authenticity beats perfection every time." — Wendy Fiona, Digital Marketer</p>
+      <p class="modal-desc" style="font-style:italic;font-size:14px;margin-top:12px;">"I would like to call it, in my own words 'THE GEN-Z MARKETING WAVE'" — Isha Rashid, Data-Driven Brand ROI Specialist</p>
+      <div class="modal-divider"></div>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="modal-behance">View full project on Behance ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Brand Voice -->
+<div class="modal-backdrop" id="modal-brandvoice" role="dialog" aria-modal="true" aria-labelledby="modal-brandvoice-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('brandvoice')" aria-label="Close">✕</button>
+    <div class="modal-hero-placeholder svg-banner-brand">
+      <div class="banner-text-overlay">
+        <div class="banner-brand-name">Brand Voice</div>
+        <div class="banner-project-name">KFC Kenya Identity</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">KFC Kenya · Brand Identity · Ongoing</div>
+      <h2 class="modal-title" id="modal-brandvoice-title">Fluent Sheng &amp; Swahili Brand Identity</h2>
+      <p class="modal-desc">Lewis built KFC Kenya's signature tone from the ground up — a voice that blends hyper-local Nairobi workplace banter, meme culture, and everyday Kenyan slang into something that feels like a conversation, not an ad. Phrases like "sherehe mingi," "nimerudi," and "hangie kwa meeting" became identifiable brand touchpoints across all social channels.</p>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val">GEN-Z</div><div class="modal-stat-key">Wave — industry term coined for this direction</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">100%</div><div class="modal-stat-key">Organic reach — zero paid amplification</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">EAfrica</div><div class="modal-stat-key">Reach across East African marketing circles</div></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title" style="margin-bottom:14px;">Signature brand phrases</div>
+      <div class="modal-tags" style="margin-bottom:28px;">
+        <span class="modal-pill highlight">Sherehe mingi</span>
+        <span class="modal-pill highlight">Nimerudi</span>
+        <span class="modal-pill highlight">Hangie kwa meeting</span>
+        <span class="modal-pill">Office culture humour</span>
+        <span class="modal-pill">Meme-native content</span>
+      </div>
+      <div class="modal-section-title" style="margin-bottom:14px;">What was built</div>
+      <div class="modal-tags">
+        <span class="modal-pill highlight">Brand Voice Guidelines</span>
+        <span class="modal-pill highlight">Tone of Voice</span>
+        <span class="modal-pill">Social Media Direction</span>
+        <span class="modal-pill">Cultural Localisation</span>
+        <span class="modal-pill">Content Strategy</span>
+      </div>
+      <div class="modal-divider"></div>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="modal-behance">View full project on Behance ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Blankets & Wine -->
+<div class="modal-backdrop" id="modal-btw" role="dialog" aria-modal="true" aria-labelledby="modal-btw-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('btw')" aria-label="Close">✕</button>
+    <div class="modal-hero-placeholder svg-banner-btw">
+      <div class="banner-text-overlay">
+        <div class="banner-brand-name" style="color:rgba(255,255,255,0.15);">Blankets</div>
+        <div class="banner-project-name">&amp; Wine · KFC Kenya</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">KFC Kenya · Event Creative · Activation</div>
+      <h2 class="modal-title" id="modal-btw-title">Blankets &amp; Wine Activation</h2>
+      <p class="modal-desc">Event creative and social strategy for KFC Kenya's presence at Blankets & Wine — one of Nairobi's flagship lifestyle events. The campaign creative earned widespread organic commentary from Kenyan marketing professionals and digital strategists on LinkedIn, cementing KFC Kenya's reputation as a brand that joins conversations rather than broadcasting at its audience.</p>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val">Organic</div><div class="modal-stat-key">100% organic reach — no paid push</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">LinkedIn</div><div class="modal-stat-key">Industry commentary from marketing professionals</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">Nairobi</div><div class="modal-stat-key">Flagship lifestyle event activation</div></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title" style="margin-bottom:14px;">Deliverables</div>
+      <div class="modal-tags">
+        <span class="modal-pill highlight">Event Art Direction</span>
+        <span class="modal-pill highlight">Social Creative</span>
+        <span class="modal-pill">Campaign Strategy</span>
+        <span class="modal-pill">Brand Activation</span>
+        <span class="modal-pill">Visual Identity for Event</span>
+      </div>
+      <div class="modal-divider"></div>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="modal-behance">View full project on Behance ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Smirnoff -->
+<div class="modal-backdrop" id="modal-smirnoff" role="dialog" aria-modal="true" aria-labelledby="modal-smirnoff-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('smirnoff')" aria-label="Close">✕</button>
+    <div class="modal-hero-placeholder svg-banner-smirnoff">
+      <div class="banner-text-overlay">
+        <div class="banner-brand-name">Smirnoff</div>
+        <div class="banner-project-name">Fiesta Nationwide Events</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">Smirnoff · BTL · Exact Experiential · 2025</div>
+      <h2 class="modal-title" id="modal-smirnoff-title">Smirnoff Fiesta Events</h2>
+      <p class="modal-desc">Conceptualised and executed creative solutions for Smirnoff Fiesta projects and activation events nationwide. From event identity design to on-ground asset production, Lewis directed the complete visual experience — ensuring consistency with global brand standards while making every activation feel unmistakably Kenyan.</p>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val">National</div><div class="modal-stat-key">Countrywide event rollout</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">BTL</div><div class="modal-stat-key">Below-the-line event creative</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">End-to-end</div><div class="modal-stat-key">Concept through production</div></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title" style="margin-bottom:14px;">Scope of work</div>
+      <div class="modal-tags">
+        <span class="modal-pill highlight">Event Art Direction</span>
+        <span class="modal-pill highlight">Brand Activation Design</span>
+        <span class="modal-pill">Supplier Coordination</span>
+        <span class="modal-pill">On-ground Visual Identity</span>
+        <span class="modal-pill">Campaign Assets</span>
+      </div>
+      <div class="modal-divider"></div>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="modal-behance">View full project on Behance ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Tropikal -->
+<div class="modal-backdrop" id="modal-tropikal" role="dialog" aria-modal="true" aria-labelledby="modal-tropikal-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('tropikal')" aria-label="Close">✕</button>
+    <div class="modal-hero-placeholder svg-banner-tropikal">
+      <div class="banner-text-overlay">
+        <div class="banner-brand-name">Tropikal</div>
+        <div class="banner-project-name">Product Launch · Kenya</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tag">Tropikal Brands · Product Launch · 2024</div>
+      <h2 class="modal-title" id="modal-tropikal-title">Tropikal Brands — Product Launch</h2>
+      <p class="modal-desc">Led the complete creative launch strategy for a new line of lotions and deodorants by Tropikal Brands. The brief called for culturally resonant visuals that celebrated Kenyan identity and values around freshness and self-care — moving beyond generic beauty advertising to something that genuinely felt like it belonged in a Kenyan bathroom cabinet.</p>
+      <div class="modal-stats">
+        <div class="modal-stat"><div class="modal-stat-val">Full</div><div class="modal-stat-key">End-to-end creative ownership</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">Launch</div><div class="modal-stat-key">New product category entry</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">Kenya</div><div class="modal-stat-key">Culturally grounded creative</div></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title" style="margin-bottom:14px;">Deliverables</div>
+      <div class="modal-tags">
+        <span class="modal-pill highlight">Launch Campaign Art Direction</span>
+        <span class="modal-pill highlight">Packaging Design Direction</span>
+        <span class="modal-pill">Brand Visual Language</span>
+        <span class="modal-pill">Cultural Localisation</span>
+        <span class="modal-pill">Marketing Collateral</span>
+      </div>
+      <div class="modal-divider"></div>
+      <a href="https://www.behance.net/louislaizer/projects" target="_blank" rel="noopener" class="modal-behance">View full project on Behance ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    if (cursor) { cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; }
+    rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+    if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Animated counters
+  function animateCount(el, target, isK) {
+    const duration = 1800;
+    let startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 4);
+      const val = Math.floor(ease * target);
+      if (isK) {
+        el.innerHTML = (val >= 1000 ? (val/1000).toFixed(1) + 'K' : val);
+      } else {
+        el.innerHTML = val.toLocaleString() + (el.dataset.suffix || '');
+      }
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const id = e.target.id;
+      if (id === 'cnt-5000') { e.target.dataset.suffix='%'; animateCount(e.target, 5000, false); }
+      else if (id === 'cnt-8') { e.target.dataset.suffix='+'; animateCount(e.target, 8, false); }
+      else if (id === 'cnt-481') animateCount(e.target, 481, false);
+      else if (id === 'cnt-13k') animateCount(e.target, 13800, true);
+      statObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  ['cnt-5000','cnt-8','cnt-481','cnt-13k'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) statObs.observe(el);
+  });
+
+  // Magnetic glass tilt — skip modals and work card buttons
+  document.querySelectorAll('.glass:not(.modal *)').forEach(card => {
+    if (card.closest('button')) return;
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 10;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 10;
+      card.style.transform = `perspective(800px) rotateX(${-y}deg) rotateY(${x}deg) translateY(-3px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+
+  // Modal logic
+  function openModal(id) {
+    const backdrop = document.getElementById('modal-' + id);
+    if (!backdrop) return;
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // focus trap: focus close button
+    const closeBtn = backdrop.querySelector('.modal-close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+  }
+  function closeModal(id) {
+    const backdrop = document.getElementById('modal-' + id);
+    if (!backdrop) return;
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on backdrop click
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) {
+        backdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-backdrop.open').forEach(b => {
+        b.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+</body>
+</html>
